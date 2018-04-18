@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Edição de Contato</title>
+    <link rel="stylesheet" data-th-href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}">
+    <link data-th-href="@{/fontawesome/css/fontawesome-all.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <form data-th-object="${contato}" accept-charset="UTF-8">
+
+        <div class="card">
+
+            <div class="card-header">
+                Edição de Novo Contato
+            </div>
+
+            <div class="card-body">
+
+                <input type="hidden" id="idContato" data-th-field="*{id}">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nome" data-th-text="Nome"></label>
+                            <input type="text" id="nome" class="form-control" data-th-field="*{nome}"/>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Telefones</legend>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="ddd">DDD</label>
+                                <input type="text" class="form-control" name="ddd" id="ddd"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="telefone">Número</label>
+                                <input type="text" class="form-control" name="telefone" id="telefone"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="tipo">Tipo</label>
+                                <select name="tipo" id="tipo" class="form-control">
+                                    <option label="Celular" value="CELULAR">Celular</option>
+                                    <option label="Residencial" value="RESIDENCIAL">Residencial</option>
+                                    <option label="Comercial" value="COMERCIAL">Comercial</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" id="idTelefone">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-primary" style="margin-top: 30px;"
+                                    onclick="moduloAtualiza.adicionaTelefone();">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div id="telefones" style="margin-bottom: 20px; margin-top: 20px;">
+                        <table id="tabelaTelefones" class="table table-bordered"
+                               data-th-if="${contato.telefones != null and not #lists.isEmpty(contato.telefones)}">
+                            <thead>
+                            <tr>
+                                <th>DDD</th>
+                                <th>Número</th>
+                                <th>Tipo</th>
+                                <th colspan="2" style="width: 10%;">Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-th-each='telefone : ${contato.telefones}'>
+                                <td data-th-text="${telefone.ddd}"></td>
+                                <td data-th-text="${telefone.numero}"></td>
+                                <td data-th-text="${telefone.tipo}"></td>
+                                <td>
+                                    <button type="button" class="btn btn-light"
+                                            onclick="moduloAtualiza.editaTelefone(this)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger"
+                                            onclick="moduloAtualiza.removeTelefone(this)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <input type="hidden" data-th-value="${telefone.id}"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </fieldset>
+
+                <br/>
+                <button type="button" class="btn btn-primary" style="display: inline-block;"
+                        onclick="moduloAtualiza.enviaContato()">
+                    <i class="far fa-hdd"></i>
+                </button>
+                <a href="#" data-th-href="@{/contato/lista}" class="btn btn-danger" style="display: inline-block;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+
+        </div>
+    </form>
+
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" data-th-src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript"
+        data-th-src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>
+<script type="text/javascript"
+        data-th-src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+<script type="text/javascript" data-th-src="@{/js/contato/edita.js}"></script>
+</body>
+</html>

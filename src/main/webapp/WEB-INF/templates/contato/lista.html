@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contatos</title>
+    <link rel="stylesheet" data-th-href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}">
+    <link data-th-href="@{/fontawesome/css/fontawesome-all.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Agenda</h1>
+            <p class="lead">Agenda de Contatos com Spring MVC</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Contatos
+        </div>
+
+        <div class="card-body">
+            <a href="#" class="btn btn-light" data-th-href="@{/contato/novo}">
+                <i class="fas fa-plus"></i>
+            </a>
+            <br/>
+            <br/>
+            <table class="table table-bordered" data-th-if="${contatos != null and not #lists.isEmpty(contatos)}">
+                <tr>
+                    <th data-th-text="Id"/>
+                    <th data-th-text="Nome"/>
+                </tr>
+                <tr data-th-each='item : ${contatos}'>
+                    <td data-th-text='${item.id}'/>
+                    <td data-th-text='${item.nome}'/>
+                    <td style="width: 5%;"><a href="#" data-th-href="@{/contato/edita(id=${item.id})}"
+                                              class="btn btn-light">
+                        <i class="fas fa-edit"></i>
+                    </a></td>
+                    <td style="width: 5%;"><a href="#" data-th-href="@{/contato/deleta(id=${item.id})}"
+                                              class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" data-th-src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript"
+        data-th-src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}"></script>
+<script type="text/javascript"
+        data-th-src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
