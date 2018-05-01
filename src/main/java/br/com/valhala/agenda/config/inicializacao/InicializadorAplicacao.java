@@ -11,12 +11,12 @@ public class InicializadorAplicacao extends AbstractAnnotationConfigDispatcherSe
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{ConfiguracaoWeb.class, ConfiguracaoJPA.class};
+        return new Class<?>[] { ConfiguracaoWeb.class, ConfiguracaoJPA.class };
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[] { "/" };
     }
 
 }

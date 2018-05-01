@@ -1,9 +1,18 @@
 package br.com.valhala.agenda.modelo;
 
-import br.com.valhala.agenda.modelo.enums.EnumTipoTelefone;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import br.com.valhala.agenda.modelo.enums.EnumTipoTelefone;
 
 @Entity
 @Table(name = "telefone")
@@ -13,7 +22,7 @@ public class Telefone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long   id;
     private String ddd;
     private String numero;
 

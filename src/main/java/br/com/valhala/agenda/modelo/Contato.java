@@ -1,13 +1,22 @@
 package br.com.valhala.agenda.modelo;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "contato")
-@NamedEntityGraph(name = "comTelefones", attributeNodes = {@NamedAttributeNode("telefones")})
+@NamedEntityGraph(name = "comTelefones", attributeNodes = { @NamedAttributeNode("telefones") })
 public class Contato implements Serializable {
 
     private static final long serialVersionUID = 1L;

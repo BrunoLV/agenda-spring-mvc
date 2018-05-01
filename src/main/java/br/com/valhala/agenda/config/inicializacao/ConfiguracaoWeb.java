@@ -1,8 +1,5 @@
 package br.com.valhala.agenda.config.inicializacao;
 
-import br.com.valhala.agenda.jpa.ContatoRepository;
-import br.com.valhala.agenda.service.ContatoService;
-import br.com.valhala.agenda.web.controller.ContatoController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -17,9 +14,13 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import br.com.valhala.agenda.jpa.ContatoRepository;
+import br.com.valhala.agenda.service.ContatoService;
+import br.com.valhala.agenda.web.controller.ContatoController;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {ContatoController.class, ContatoService.class, ContatoRepository.class})
+@ComponentScan(basePackageClasses = { ContatoController.class, ContatoService.class, ContatoRepository.class })
 public class ConfiguracaoWeb extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -65,7 +66,7 @@ public class ConfiguracaoWeb extends WebMvcConfigurerAdapter implements Applicat
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEgine());
         viewResolver.setOrder(1);
-        viewResolver.setViewNames(new String[]{"*.html", "*.xhtml"});
+        viewResolver.setViewNames(new String[] { "*.html", "*.xhtml" });
         return viewResolver;
     }
 

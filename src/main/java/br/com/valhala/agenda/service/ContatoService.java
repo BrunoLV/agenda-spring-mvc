@@ -1,14 +1,15 @@
 package br.com.valhala.agenda.service;
 
-import br.com.valhala.agenda.jpa.ContatoRepository;
-import br.com.valhala.agenda.modelo.Contato;
-import br.com.valhala.agenda.modelo.Telefone;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import br.com.valhala.agenda.jpa.ContatoRepository;
+import br.com.valhala.agenda.modelo.Contato;
+import br.com.valhala.agenda.modelo.Telefone;
 
 @Service
 public class ContatoService {
@@ -30,8 +31,7 @@ public class ContatoService {
     public Contato salva(Contato contato) {
         List<Telefone> telefones = contato.getTelefones();
         if (telefones != null && !telefones.isEmpty()) {
-            for (Telefone telefone :
-                    telefones) {
+            for (Telefone telefone : telefones) {
                 telefone.setContato(contato);
             }
         }

@@ -1,9 +1,10 @@
 package br.com.valhala.agenda.jpa;
 
-import br.com.valhala.agenda.modelo.Contato;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import br.com.valhala.agenda.modelo.Contato;
 
 public interface ContatoRepository extends JpaRepository<Contato, Long> {
 
